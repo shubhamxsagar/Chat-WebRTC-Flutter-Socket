@@ -1,0 +1,10 @@
+const express = require('express')
+const {loginUser, getUserData, follow, unFollow} = require('../controller/userCtrl')
+const authMiddleware = require('../middlewares/authMiddleware')
+const { sendMessage, getAllMessages } = require('../controller/messageCtrl')
+const router = express.Router()
+router.post('/register', loginUser)
+router.get('/',authMiddleware, getUserData)
+router.put('/follow/:id',authMiddleware, follow)
+router.put('/unFollow',authMiddleware, unFollow)
+module.exports = router
